@@ -1,0 +1,31 @@
+.wrapper {
+/*  */
+	overflow: hidden; 
+	padding-left: 18px;
+	padding-right: 18px;
+	max-width: 1236px; /* box-sizing decreased width of wrapper element by 36px -> both paddings */
+/* horizontally centered in the screen */
+	margin-left: auto;
+	margin-right: auto;
+	
+	&--medium {
+		max-width: 976px; 
+	}
+
+/* to remove nested padding effect, because of div in div with .wrapper */
+	.wrapper {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	
+	&--b-margin {
+		
+		margin-bottom: 1rem;
+		
+		@mixin atSmall {
+			margin-bottom: 3.875rem;
+		}
+		
+	}
+	
+}
