@@ -4,6 +4,22 @@
 	@mixin atMedium {
 		padding: 4.5rem 0;
 	}
+	
+	&--no-b-padding-until-medium {
+		padding-bottom: 0;
+	}
+	
+		@mixin atMedium {
+			padding-bottom: 4.5rem;
+	}
+	
+	&--no-b-padding-until-large {
+		padding-bottom: 0;
+	}
+	
+		@mixin atLarge {
+			padding-bottom: 4.5rem;
+	}
 		
 /* top/bottom, horizontal is 0 for right and left values */
 	
@@ -11,4 +27,18 @@
 		background-color: $mainBlue;
 		color: #fff;
 	}
+	
+	&--testimonials {
+		background-color: #e0e6ef;
+		
+		@mixin atLarge {
+			background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+	/* aligned toward top of the section and horizontaly in the center and should be displayed once */
+			background-size: cover;
+	/* will shrink or stretch the image to always be large or small enough to perfectly cover the containing div */	
+		}
+		
+	}
+	
 }
+
