@@ -3,7 +3,8 @@
 	overflow: hidden; 
 	padding-left: 18px;
 	padding-right: 18px;
-	max-width: 1236px; /* box-sizing decreased width of wrapper element by 36px -> both paddings */
+	max-width: 1236px; 
+/* box-sizing decreased width of wrapper element by 36px -> both paddings */
 /* horizontally centered in the screen */
 	margin-left: auto;
 	margin-right: auto;
