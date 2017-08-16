@@ -9,6 +9,7 @@
 	
 	/* to position text on top of the image */
 	&__text-content {								/* nested css; & doubles '.large-hero' */
+		padding-top: 88px;
 		position: absolute;
 	/* centering the content verticaly; transform/translateY let us position an element verticaly relative to itself; negative value to pull the element up */	
 		top: 50%;
@@ -17,6 +18,10 @@
 	/* centering horizontaly: width, text-align */
 		width: 100%;
 		text-align: center;
+		
+		@mixin atMedium {
+			padding-top: 60px; 
+		}
 	}
 	
 	&__title {
