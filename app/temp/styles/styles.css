@@ -1417,3 +1417,19 @@ a {
 			background-color: transparent /* no background-color at all */
 	}
 	}
+
+.reveal-item {
+	opacity: 0; /* hide initially using opacity */
+	-webkit-transition: all 1.5s ease-out;
+	transition: all 1.5s ease-out;
+	-webkit-transform: scale(1.15);
+	        transform: scale(1.15);
+}
+
+/* for ZOOM-out effect */
+
+.reveal-item--is-visible {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		        transform: scale(1); /* for zoom-OUT effect */
+	}
