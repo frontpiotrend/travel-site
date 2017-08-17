@@ -51,6 +51,11 @@
 			font-size: 1rem;
 			padding: 12px 0;		
 			background-color: transparent; /* no background-color at all */
+			
+			/* & means a + if it has class 'is-current-link' */
+			&.is-current-link {
+				color: #fabb69; 
+			}
 		}
 	}
 
