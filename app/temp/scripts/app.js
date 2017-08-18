@@ -11109,6 +11109,10 @@ var _StickyHeader = __webpack_require__(5);
 
 var _StickyHeader2 = _interopRequireDefault(_StickyHeader);
 
+var _Modal = __webpack_require__(7);
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mobileMenu = new _MobileMenu2.default(); //object which uses this class as a blueprint; saved to a variable
@@ -11116,6 +11120,7 @@ new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
 new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
 /* arguments above: 1) jquery-selector, 2) offset */
 var stickyHeader = new _StickyHeader2.default();
+var modal = new _Modal2.default();
 
 /***/ }),
 /* 3 */
@@ -11722,6 +11727,88 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 }));
 
 
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Modal = function () {
+	function Modal() {
+		_classCallCheck(this, Modal);
+
+		this.openModalButton = (0, _jquery2.default)(".open-modal"); /* 'Get in touch'-button lives here; use of $ requires import of jquery on top */
+		this.modal = (0, _jquery2.default)(".modal"); /* property which selects modal-div that we want to reveal */
+		this.closeModalButton = (0, _jquery2.default)(".modal__close"); /* selects modal top right X close button */
+		this.events();
+	}
+
+	/* method to handle all of our events */
+
+
+	_createClass(Modal, [{
+		key: "events",
+		value: function events() {
+			// clicking the open modal button
+			this.openModalButton.click(this.openModal.bind(this)); /* bind because of 'this'-reference */
+
+			// clicking the x close modal button
+			this.closeModalButton.click(this.closeModal.bind(this));
+
+			// user pushes any key to escape
+			(0, _jquery2.default)(document).keyup(this.keyPressHandler.bind(this)); /* press anything -> overall document */ /* with .bind we control 'this' and let it keep it current value */
+		}
+
+		/* method to check esc-key -> keyCode is here 27 */
+
+	}, {
+		key: "keyPressHandler",
+		value: function keyPressHandler(e) {
+			if (e.keyCode == 27) {
+				this.closeModal();
+				/* with 'this' is not set to our main object or class, but set to the element that called the 'keyup'-method wich will be overall document or page */
+			}
+		}
+
+		/* method to open the modal */
+
+	}, {
+		key: "openModal",
+		value: function openModal() {
+			this.modal.addClass("modal--is-visible");
+			return false; /* it's a link element; prevents default behavior of scrolling up */
+		}
+
+		/* method to close the modal */
+
+	}, {
+		key: "closeModal",
+		value: function closeModal() {
+			this.modal.removeClass("modal--is-visible");
+			return false; /* don't forget to add --is-visible rule in _modal.css */
+		}
+	}]);
+
+	return Modal;
+}();
+
+exports.default = Modal;
 
 /***/ })
 /******/ ]);
