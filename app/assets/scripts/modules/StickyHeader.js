@@ -4,6 +4,8 @@ import smoothScroll from 'jquery-smooth-scroll';
 
 class StickyHeader {
 	constructor() {
+/* select all elements with .lazyload */		
+		this.lazyImages = $(".lazyload");
 /* points out to site-header-element */		
 		this.siteHeader = $(".site-header");
 /* which point on the page we want to be the trigger? when trigger hits the top of our viewport then header-background darker */			
@@ -12,8 +14,16 @@ class StickyHeader {
 		this.createHeaderWaypoint();
 		this.pageSections = $(".page-section");
 		this.headerLinks = $(".primary-nav a"); /* stores all of the header-links */
-		this.createPageSectionWaypoints();
+		this.createPageSectio nWaypoints();
 		this.addSmoothScrolling();
+		this.refreshWaypoints();
+	}
+
+/* lazy loading may cause custom waypoints events to fire at wrong times; solution: refresh waypoints measurements everytime a new image is lazy loaded*/	
+	refreshWaypoints() {
+		this.lazyImages.on('load', function() {
+			Waypoint.refreshAll();
+		});
 	}
 
 /* to scroll smoothly after clicking internal links to sections */	

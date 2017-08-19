@@ -32,10 +32,13 @@
 		background-color: #e0e6ef;
 		
 		@mixin atLarge {
-			background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
-	/* aligned toward top of the section and horizontaly in the center and should be displayed once */
-			background-size: cover;
-	/* will shrink or stretch the image to always be large or small enough to perfectly cover the containing div */	
+/* .lazyload from html will become .lazyloaded */				
+			&.lazyloaded {
+				background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+/* aligned toward top of the section and horizontaly in the center and should be displayed once */
+				background-size: cover;
+/* will shrink or stretch the image to always be large or small enough to perfectly cover the containing div */
+			}
 		}
 		
 	}

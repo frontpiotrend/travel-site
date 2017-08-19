@@ -11278,6 +11278,8 @@ var StickyHeader = function () {
 	function StickyHeader() {
 		_classCallCheck(this, StickyHeader);
 
+		/* select all elements with .lazyload */
+		this.lazyImages = (0, _jquery2.default)(".lazyload");
 		/* points out to site-header-element */
 		this.siteHeader = (0, _jquery2.default)(".site-header");
 		/* which point on the page we want to be the trigger? when trigger hits the top of our viewport then header-background darker */
@@ -11288,12 +11290,23 @@ var StickyHeader = function () {
 		this.headerLinks = (0, _jquery2.default)(".primary-nav a"); /* stores all of the header-links */
 		this.createPageSectionWaypoints();
 		this.addSmoothScrolling();
+		this.refreshWaypoints();
 	}
 
-	/* to scroll smoothly after clicking internal links to sections */
+	/* lazy loading may cause custom waypoints events to fire at wrong times; solution: refresh waypoints measurements everytime a new image is lazy loaded*/
 
 
 	_createClass(StickyHeader, [{
+		key: 'refreshWaypoints',
+		value: function refreshWaypoints() {
+			this.lazyImages.on('load', function () {
+				Waypoint.refreshAll();
+			});
+		}
+
+		/* to scroll smoothly after clicking internal links to sections */
+
+	}, {
 		key: 'addSmoothScrolling',
 		value: function addSmoothScrolling() {
 			this.headerLinks.smoothScroll();
