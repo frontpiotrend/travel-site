@@ -9,4 +9,4 @@ new RevealOnScroll($(".feature-item"), "85%");
 new RevealOnScroll($(".testimonial"), "60%");
 /* arguments above: 1) jquery-selector, 2) offset */
 var stickyHeader = new StickyHeader();
-var modal = new Modal();
+var modal = new Modal(); 

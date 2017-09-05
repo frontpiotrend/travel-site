@@ -99,12 +99,14 @@
 		}
 	}
 	
-	/* Begin Equal Height Rules */
-	&--equal-height-at-medium {
+	/* Begin Equal Height Rules */ 
+	.flexbox &--equal-height-at-medium {
+/* modifier rule only applied when the browser uses .flexbox */		
 		@mixin atMedium {
 			display: flex;
 /* tell the parent .row-div to use flexbox */
 		}
+		
 /* if we tell each of the column to use flexbox instead of being float to the left, the contents of each will flex to match the tallest element */	
 		& > div {
 			float: none;
@@ -112,7 +114,7 @@
 		}
 	}
 
-&--equal-height-at-large {
+	.flexbox &--equal-height-at-large {
 		@mixin atLarge {
 			display: flex;
 		}
