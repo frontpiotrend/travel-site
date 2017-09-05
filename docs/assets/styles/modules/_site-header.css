@@ -1,0 +1,150 @@
+.site-header {
+	padding: 10px 0;
+/* to take header out of the normal flow of the page */
+	position: absolute;
+/* site-header should take full available width */
+	width: 100%;
+/* whichever element has higher z-index value will be placed on top */		
+	z-index: 2; 
+	transition: background-color .3s ease-out; 		/* to fade into the view gradually */
+	
+	&--is-expanded {
+		/* when 'site-header' has this modifier class supplied to it then becomes semi-transparent background-color */
+		background-color: rgba($mainBlue, .55);
+	}
+
+	
+	@mixin atMedium {
+		position: fixed;	/* lock the element even as we scroll  */
+/* transparent blue background */	
+		background-color: rgba($mainBlue, .3); /* works thanks to postcss-hexrgba | rgba(47, 85, 114, .3) */ 	
+		
+		&--dark {
+			background-color: rgba(23, 51, 72, .85); /* darker blue when scrolled down and sticky */
+		}
+	}
+	
+	&__btn-container {
+		@mixin atMedium {
+			float: right;
+		}
+		
+	}
+	
+	&__logo {
+/* remove logo from the natural flow of the page that way that containing element (with transparent blue background) won't even be aware the logo exists */	
+		position: absolute;
+		top: 0; /* overrides padding from .site-header */
+		left: 50%; /* by itself it will push the logo too far to the right */
+		transform: translateX(-50%) scale(.8); /* so pull back to the left half of its own width */
+		transform-origin: 50% 0;
+		background-color: $mainBlue;
+		padding: 25px 36px;
+		transition: transform .3s ease-out;
+		
+		@mixin atMedium {
+			left: auto;
+			transform: translateX(0);
+			
+/* targets logo only when --dark header is being used; logo smaller to fit the bar once scroll is used */			
+			.site-header--dark & {
+				transform: scale(.56);
+			}
+		}
+	}
+	
+	&__logo__graphic {
+		text-indent: -9999px; /* hides text without hiding element itself */
+	}
+	
+	&__menu-icon {
+		width: 20px;
+		height: 19px;
+		position: absolute;
+		z-index: 10; /* icon is overlapped once menu is visible, that's why higher z-index needed */
+		top: 10px;
+		right: 10px;
+		
+		/* first horizontal bar of hamburger menu */
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 20px; /* since we now 'menu-icon'-parent-div has also 20px */
+			height: 3px;
+			background-color: #fff;
+			transform-origin: 0 0;  /* by default is 50% 50% which means horizontal and vertical center of an element */
+			transition: transform .3s ease-out; /* should gradually transition its transform property */
+		}
+		
+		&__middle {
+			position: absolute;
+			top: 8px;
+			left: 0;
+			width: 20px; 
+			height: 3px;
+			background-color: #fff;
+/* middle bar fades out with opacity and shrinks to the left edge */			
+			transition: all .3s ease-out;
+			transform-origin: 0 50%;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0px;
+			left: 0;
+			width: 20px; 
+			height: 3px;
+			background-color: #fff;
+			transform-origin: 0 100%; /* here we want bottom-left corner of an element to be transform-origin */
+			transition: transform .3s ease-out;
+		}
+		
+		@mixin atMedium {
+			display: none;
+		}
+	}
+	
+	&__menu-icon--close-x {
+		&::before {
+/* rotate top bar clockweise 45deg; we want top left corner to be pivot point and bar to be longer */	
+			transform: rotate(45deg) scaleX(1.25);
+/* if scale(1) is elements natural size; scaleX is only width */
+		}
+		
+		.site-header__menu-icon__middle {
+			opacity: 0;	/* hide middle bar */
+			transform: scaleX(0);
+		}
+		
+		&::after {
+/* rotate bottom bar counterclockweise... */	
+			transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+		}
+	}
+	
+	&__menu-content {
+		opacity: 0; /* hidden */
+		transition: all .3s ease-out;
+		transform: scale(1.2); /* neat zoom-out effect; initially content a bit bigger */
+		position: relative; /* otherwise the browser won't acknowledge z-index */
+		z-index: -10; /* to ensure that menu when hidden cannot be accidentaly clicked on because sits beneath all the other content on the page */
+		padding-top: 90px;
+		text-align: center;
+		
+		@mixin atMedium {
+			opacity: 1; /* visible again */
+			z-index: 1;
+			padding-top: 0;
+			transform: scale(1); /* zoom-out only for small screens, larger screens should always use a scale of 1(00%) */
+		}
+/* when icon is clicked -> use js to add a new class to a hidden div and then use css to make that class visible */
+		&--is-visible {
+			opacity: 1; /* to make it visible */
+			z-index: 1;
+			transform: scale(1);
+		}
+	}
+}

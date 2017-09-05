@@ -1,0 +1,20 @@
+.generic-content-container {
+	
+	p {
+		font-weight: 300;
+		line-height: 1.65; 
+/* line-height doesn't require a unit of measurement */
+		margin: 0 0 1.8rem 0;
+/* css shorthand; works in a clockwise fashion: top, right, bottom, left */
+		
+		@mixin atSmall {
+			font-size: 1.125rem;
+		}
+		
+	}
+	
+	p a {
+		font-weight: 700;
+	}
+	
+}

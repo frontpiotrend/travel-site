@@ -1,0 +1,26 @@
+.social-icons {
+	text-align: center;
+	
+	&__icon {
+		background-color: $mainOrange;
+		display: inline-block; /* all of the social-media-icons will sit on a single line, but with custom height if we need to */
+		margin: 0 5px 5px 5px; /* only horizontal margin added */
+		width: 33%; 
+		height: 72px; /* for each button-link uniform width and height */
+		position: relative; /* because descendant absolute */
+		
+		@mixin atSmall {
+			width: 72px;
+			margin: 0 5px;
+		}
+		
+		/* nested descendent rule which will target 'span'-element */
+		.icon {
+			display: block; /* automated width and height values from automated sprite-setup can be applied to the element */ 
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%); /* translate to control positioning (pull it back to the left half of its own width, pull it back up half of its own height */
+		}
+	}
+}

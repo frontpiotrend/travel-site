@@ -1,0 +1,69 @@
+.large-hero {
+	position: relative;
+	border-bottom: 10px solid $mainBlue;
+	
+	&__image {
+/* by deafault browser treat images as inline-level-elements (similar to line of text); changing 'display: block' -> treat the image as div */
+		display: block; 
+	}
+	
+	/* to position text on top of the image */
+	&__text-content {								/* nested css; & doubles '.large-hero' */
+		padding-top: 88px;
+		position: absolute;
+	/* centering the content verticaly; transform/translateY let us position an element verticaly relative to itself; negative value to pull the element up */	
+		top: 50%;
+		transform: translateY(-50%);
+		left: 0;
+	/* centering horizontaly: width, text-align */
+		width: 100%;
+		text-align: center;
+		
+		@mixin atMedium {
+			padding-top: 60px; 
+		}
+	}
+	
+	&__title {
+		font-weight: 300;
+		color: $mainBlue;
+		margin: 0;
+		font-size: 2.4rem;
+		
+		@mixin atSmall {			/* atSmall screen-size at least 530px; atMedium and atLarge the same */
+			font-size: 4.8rem;
+		}
+		
+	}
+	
+	&__subtitle {
+		font-weight: 300;
+		color: $mainBlue;
+		font-size: 1.5rem;
+		margin: 0;
+		
+		@mixin atSmall {
+			font-size: 2.9rem;
+		}
+	}
+	
+	&__description {
+		color: #fff;
+		font-size: 1.1rem;
+		font-weight: 100;
+		text-shadow: 2px 2px 0 rgba(0, 0, 0, .1); 				/* 2px offset, 0 blur, transparent black */
+		max-width: 30rem;													/* first measure its 480px than convert '/16' */
+		margin-left: auto;
+		margin-right: auto;
+		
+		@mixin atSmall {
+			font-size: 1.875rem;		
+		}
+	}
+
+}
+
+
+
+
+
